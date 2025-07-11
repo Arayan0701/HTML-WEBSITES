@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MeeraMurtiStore - Bring Divinity to Your Home</title>
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>tailwind.config = { theme: { extend: { colors: { primary: '#FF9933', secondary: '#FFD700' }, borderRadius: { 'none': '0px', 'sm': '4px', DEFAULT: '8px', 'md': '12px', 'lg': '16px', 'xl': '20px', '2xl': '24px', '3xl': '32px', 'full': '9999px', 'button': '8px' } } } }</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+  <style>
+    :where([class^="ri-"])::before {
+      content: "\f3c2";
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .serif-font {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .header-nav {
+      transition: background-color 0.3s ease;
+    }
+
+    .header-nav.scrolled {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .category-card:hover {
+      transform: translateY(-5px);
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      transition: transform 0.3s ease;
+    }
+
+    .quick-view {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .product-card:hover .quick-view {
+      opacity: 1;
+    }
+
+    .custom-checkbox {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+      position: relative;
+    }
+
+    .custom-checkbox:checked {
+      background-color: #FF9933;
+      border-color: #FF9933;
+    }
+
+    .custom-checkbox:checked::after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 2px;
+      width: 6px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    .custom-range {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 4px;
+      background: #ddd;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    .custom-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #FF9933;
+      cursor: pointer;
+    }
+
+    .custom-range::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #FF9933;
+      cursor: pointer;
+      border: none;
+    }
+
+    .custom-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+
+    .custom-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .switch-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .switch-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked+.switch-slider {
+      background-color: #FF9933;
+    }
+
+    input:checked+.switch-slider:before {
+      transform: translateX(26px);
+    }
+
+    .whatsapp-btn {
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
+        transform: translateY(0);
+      }
+
+      40% {
+        transform: translateY(-10px);
+      }
+
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50">
+  <!-- Header -->
+  <header class="header-nav fixed w-full z-50 py-4 px-6 bg-opacity-40 bg-white">
+    <div class="container mx-auto flex items-center justify-between">
+      <a href="#" class="text-3xl font-['Pacifico'] text-primary">MeeraMurtiStore</a>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="#" class="text-gray-800 hover:text-primary font-medium relative group">
+          Home
+          <span
+            class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="#categories" class="text-gray-800 hover:text-primary font-medium relative group">
+          Categories
+          <span
+            class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="#about" class="text-gray-800 hover:text-primary font-medium relative group">
+          About Us
+          <span
+            class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="#testimonials" class="text-gray-800 hover:text-primary font-medium relative group">
+          Reviews
+          <span
+            class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="#contact" class="text-gray-800 hover:text-primary font-medium relative group">
+          Contact
+          <span
+            class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <div class="relative hidden md:block">
+          <input type="text" placeholder="Search products..."
+            class="pl-10 pr-4 py-2 rounded-full text-sm border-none bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/30 w-48">
+          <div
+            class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 flex items-center justify-center text-gray-500">
+            <i class="ri-search-line"></i>
+          </div>
+        </div>
+        <a href="#" class="relative w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary">
+          <i class="ri-shopping-cart-2-line text-xl"></i>
+          <span
+            class="absolute -top-1 -right-1 bg-primary text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">3</span>
+        </a>
+        <a href="#"
+          class="w-10 h-10 flex items-center justify-center bg-green-500 text-white rounded-full whatsapp-btn">
+          <i class="ri-whatsapp-line text-xl"></i>
+        </a>
+        <button class="md:hidden w-10 h-10 flex items-center justify-center" id="mobile-menu-button">
+          <i class="ri-menu-line text-2xl"></i>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="md:hidden bg-white absolute w-full left-0 top-full shadow-lg py-4 px-6 hidden" id="mobile-menu">
+      <div class="flex items-center mb-4">
+        <input type="text" placeholder="Search products..."
+          class="pl-10 pr-4 py-2 rounded-full text-sm border-none bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/30 w-full">
+        <div
+          class="absolute left-9 top-7 transform -translate-y-1/2 w-5 h-5 flex items-center justify-center text-gray-500">
+          <i class="ri-search-line"></i>
+        </div>
+      </div>
+      <nav class="flex flex-col space-y-4">
+        <a href="#" class="text-gray-800 hover:text-primary font-medium py-2">Home</a>
+        <a href="#categories" class="text-gray-800 hover:text-primary font-medium py-2">Categories</a>
+        <a href="#about" class="text-gray-800 hover:text-primary font-medium py-2">About Us</a>
+        <a href="#testimonials" class="text-gray-800 hover:text-primary font-medium py-2">Reviews</a>
+        <a href="#contact" class="text-gray-800 hover:text-primary font-medium py-2">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <!-- Hero Section -->
+  <section class="relative w-full h-[100vh] flex items-center"
+    style="background-image: url('https://readdy.ai/api/search-image?query=Beautiful%20Hindu%20temple%20interior%20with%20golden%20statues%20of%20deities%2C%20soft%20ambient%20lighting%2C%20sacred%20atmosphere%2C%20ornate%20decorations%2C%20peaceful%20spiritual%20setting%2C%20warm%20golden%20glow%2C%20marble%20floors%2C%20intricate%20architectural%20details%2C%20devotional%20ambiance&width=1920&height=1080&seq=hero1&orientation=landscape'); background-size: cover; background-position: center;">
+    <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+    <div class="container mx-auto px-6 relative z-10 w-full">
+      <div class="max-w-2xl">
+        <h1 class="text-5xl md:text-6xl font-bold text-white mb-4 serif-font">Bring Divinity to Your Home</h1>
+        <p class="text-xl text-white mb-8 max-w-lg">Discover our exquisite collection of authentic Hindu murtis, pooja
+          items, and spiritual decor to elevate your sacred space.</p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#products"
+            class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-button font-medium transition-all whitespace-nowrap">Shop
+            Now</a>
+          <a href="#categories"
+            class="bg-white hover:bg-gray-100 text-gray-800 px-8 py-3 rounded-button font-medium transition-all whitespace-nowrap">View
+            Collection</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Categories Section -->
+  <section id="categories" class="py-16 px-6">
+    <div class="container mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 serif-font">Sacred Categories</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">Explore our carefully curated collection of divine items to enhance
+          your spiritual journey and create a sacred atmosphere in your home.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Category 1: Murtis -->
+        <div class="category-card bg-white rounded-lg shadow-md overflow-hidden transition-all">
+          <div class="h-64 overflow-hidden">
+            <img
+              src="https://readdy.ai/api/search-image?query=Beautiful%20collection%20of%20Hindu%20deity%20statues%20including%20Ganesh%2C%20Lakshmi%2C%20Krishna%2C%20Ram%2C%20and%20Shiva%20murtis%20arranged%20on%20a%20clean%20marble%20shelf%20with%20soft%20lighting%2C%20detailed%20craftsmanship%20visible%2C%20various%20sizes%20and%20materials%2C%20professional%20product%20photography&width=600&height=400&seq=cat1&orientation=landscape"
+              alt="Hindu God Murtis" class="w-full h-full object-cover object-top">
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-semibold mb-3 serif-font">Divine Murtis</h3>
+            <p class="text-gray-600 mb-4">Exquisite handcrafted idols of Ganesh, Laxmi, Krishna, Ram, Shiv and more
+              deities.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Ganesh</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Laxmi</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Krishna</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Ram</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Shiv</span>
+            </div>
+            <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+              Explore Collection
+              <i class="ri-arrow-right-line ml-2"></i>
+            </a>
+          </div>
+        </div>
+        <!-- Category 2: Pooja Items -->
+        <div class="category-card bg-white rounded-lg shadow-md overflow-hidden transition-all">
+          <div class="h-64 overflow-hidden">
+            <img
+              src="https://readdy.ai/api/search-image?query=Beautiful%20arrangement%20of%20Hindu%20pooja%20items%20including%20brass%20incense%20holders%2C%20ornate%20diyas%20%28oil%20lamps%29%2C%20decorative%20bells%2C%20and%20ceremonial%20kalash%20%28water%20vessels%29%20on%20a%20traditional%20cloth%2C%20soft%20ambient%20lighting%2C%20detailed%20craftsmanship%20visible%2C%20professional%20product%20photography&width=600&height=400&seq=cat2&orientation=landscape"
+              alt="Pooja Items" class="w-full h-full object-cover object-top">
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-semibold mb-3 serif-font">Pooja Essentials</h3>
+            <p class="text-gray-600 mb-4">Traditional items for daily worship including agarbatti stands, diyas, bells,
+              and kalash.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Agarbatti</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Diya</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Bell</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Kalash</span>
+            </div>
+            <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+              Explore Collection
+              <i class="ri-arrow-right-line ml-2"></i>
+            </a>
+          </div>
+        </div>
+        <!-- Category 3: Spiritual Decor -->
+        <div class="category-card bg-white rounded-lg shadow-md overflow-hidden transition-all">
+          <div class="h-64 overflow-hidden">
+            <img
+              src="https://readdy.ai/api/search-image?query=Beautiful%20Hindu%20spiritual%20home%20decor%20collection%20including%20ornate%20mandir%20hangings%2C%20decorative%20brass%20sets%2C%20spiritual%20wall%20art%20with%20Hindu%20symbols%20and%20deities%2C%20arranged%20in%20an%20elegant%20home%20setting%2C%20warm%20lighting%2C%20professional%20product%20photography&width=600&height=400&seq=cat3&orientation=landscape"
+              alt="Spiritual Decor" class="w-full h-full object-cover object-top">
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-semibold mb-3 serif-font">Spiritual Decor</h3>
+            <p class="text-gray-600 mb-4">Elevate your sacred space with mandir hangings, brass sets, and spiritual wall
+              art.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Mandir Hangings</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Brass Sets</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Wall Art</span>
+            </div>
+            <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+              Explore Collection
+              <i class="ri-arrow-right-line ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Products Section -->
+  <section id="products" class="py-16 px-6 bg-gray-50">
+    <div class="container mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 serif-font">Featured Products</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">Discover our most popular divine items, crafted with devotion and
+          attention to detail.</p>
+      </div>
+      <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Filters Sidebar -->
+        <div class="lg:w-1/4">
+          <div class="bg-white rounded-lg shadow-md p-6 sticky top-24">
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="text-xl font-semibold">Filters</h3>
+              <button class="text-primary text-sm font-medium hover:underline">Clear All</button>
+            </div>
+            <!-- Deity Filter -->
+            <div class="mb-6">
+              <h4 class="font-medium mb-3">Deity</h4>
+              <div class="space-y-2">
+                <label class="flex items-center cursor-pointer">
+                  <input type="checkbox" class="custom-checkbox mr-3">
+                  <span class="text-gray-700">Ganesh</span>
+                  <span class="text-gray-400 text-sm ml-auto">24</span>
+                </label>
+                <label class="flex items-center cursor-pointer">
+                  <input type="checkbox" class="custom-checkbox mr-3">
+                  <span class="text-gray-700">Laxmi</span>
+                  <span class="text-gray-400 text-sm ml-auto">18</span>
+                </label>
+                <label class="flex items-center cursor-pointer">
+                  <input type="checkbox" class="custom-checkbox mr-3">
+                  <span class="text-gray-700">Krishna</span>
+                  <span class="text-gray-400 text-sm ml-auto">16</span>
+                </label>
+                <label class="flex items-center cursor-pointer">
+                  <input type="checkbox" class="custom-checkbox mr-3">
+                  <span class="text-gray-700">Ram</span>
+                  <span class="text-gray-400 text-sm ml-auto">12</span>
+                </label>
+                <label class="flex items-center cursor-pointer">
+                  <input type="checkbox" class="custom-checkbox mr-3">
+                  <span class="text-gray-700">Shiv</span>
+                  <span class="text-gray-400 text-sm ml-auto">15</span>
+                </label>
+              </div>
+            </div>
+            <!-- Material Filter -->
+            <div class="mb-6">
+              <h4 class="font-medium mb-3">Material</h4>
+              <div class="space-y-2">
+                <label class="flex items-center cursor-pointer">
+                  <input type="checkbox" class="custom-checkbox mr-3">
+                  <span class="text-gray-700">Brass</span>
+                  <span class="text-gray-400 text-sm ml-auto">32</span>
+                </label>
+                <label class="flex items-center cursor-pointer">
+                  <input type="checkbox" class="custom-checkbox mr-3">
+                  <span class="text-gray-700">Marble</span>
+                  <span class="text-gray-400 text-sm ml-auto">18</span>
+                </label>
+                <label class="flex items-center cursor-pointer">
+                  <input type="checkbox" class="custom-checkbox mr-3">
+                  <span class="text-gray-700">Wood</span>
+                  <span class="text-gray-400 text-sm ml-auto">14</span>
+                </label>
+                <label class="flex items-center cursor-pointer">
+                  <input type="checkbox" class="custom-checkbox mr-3">
+                  <span class="text-gray-700">Clay</span>
+                  <span class="text-gray-400 text-sm ml-auto">9</span>
+                </label>
+              </div>
+            </div>
+            <!-- Size Filter -->
+            <div class="mb-6">
+              <h4 class="font-medium mb-3">Size</h4>
+              <div class="space-y-2">
+                <label class="flex items-center cursor-pointer">
+                  <input type="checkbox" class="custom-checkbox mr-3">
+                  <span class="text-gray-700">Small (3-6 inches)</span>
+                  <span class="text-gray-400 text-sm ml-auto">28</span>
+                </label>
+                <label class="flex items-center cursor-pointer">
+                  <input type="checkbox" class="custom-checkbox mr-3">
+                  <span class="text-gray-700">Medium (7-12 inches)</span>
+                  <span class="text-gray-400 text-sm ml-auto">22</span>
+                </label>
+                <label class="flex items-center cursor-pointer">
+                  <input type="checkbox" class="custom-checkbox mr-3">
+                  <span class="text-gray-700">Large (13+ inches)</span>
+                  <span class="text-gray-400 text-sm ml-auto">15</span>
+                </label>
+              </div>
+            </div>
+            <!-- Price Range -->
+            <div>
+              <h4 class="font-medium mb-3">Price Range</h4>
+              <div class="mb-4">
+                <input type="range" min="100" max="10000" value="5000" class="custom-range" id="price-range">
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-gray-600 text-sm">₹100</span>
+                <span class="text-gray-800 font-medium" id="price-value">₹5,000</span>
+                <span class="text-gray-600 text-sm">₹10,000</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Products Grid -->
+        <div class="lg:w-3/4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Product 1 -->
+            <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition-all">
+              <div class="relative h-64 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=Beautiful%20brass%20Ganesh%20murti%20%28statue%29%20with%20intricate%20details%2C%20sitting%20pose%2C%20ornate%20decorations%2C%20professional%20product%20photography%20on%20plain%20background%2C%20soft%20lighting%20highlighting%20the%20craftsmanship%2C%20Hindu%20deity&width=500&height=500&seq=prod1&orientation=squarish"
+                  alt="Brass Ganesh Murti" class="w-full h-full object-cover object-top">
+                <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                  <button
+                    class="quick-view-btn bg-white text-gray-800 px-4 py-2 rounded-button font-medium hover:bg-gray-100 transition-all whitespace-nowrap">Quick
+                    View</button>
+                </div>
+              </div>
+              <div class="p-4">
+                <div class="flex items-center mb-2">
+                  <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full">Ganesh</span>
+                  <span class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full ml-2">Brass</span>
+                </div>
+                <h3 class="text-lg font-semibold mb-1">Antique Brass Ganesh Murti</h3>
+                <div class="flex items-center mb-3">
+                  <div class="flex text-yellow-400">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-half-fill"></i>
+                  </div>
+                  <span class="text-gray-500 text-sm ml-1">(28)</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span class="text-gray-400 line-through text-sm">₹3,499</span>
+                    <span class="text-gray-800 font-bold ml-2">₹2,999</span>
+                  </div>
+                  <button
+                    class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-all">
+                    <i class="ri-shopping-cart-2-line"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Product 2 -->
+            <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition-all">
+              <div class="relative h-64 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=Beautiful%20marble%20Lakshmi%20murti%20%28statue%29%20with%20intricate%20details%2C%20standing%20pose%20with%20lotus%2C%20ornate%20decorations%2C%20professional%20product%20photography%20on%20plain%20background%2C%20soft%20lighting%20highlighting%20the%20craftsmanship%2C%20Hindu%20goddess%20of%20wealth&width=500&height=500&seq=prod2&orientation=squarish"
+                  alt="Marble Laxmi Murti" class="w-full h-full object-cover object-top">
+                <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                  <button
+                    class="quick-view-btn bg-white text-gray-800 px-4 py-2 rounded-button font-medium hover:bg-gray-100 transition-all whitespace-nowrap">Quick
+                    View</button>
+                </div>
+              </div>
+              <div class="p-4">
+                <div class="flex items-center mb-2">
+                  <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full">Laxmi</span>
+                  <span class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full ml-2">Marble</span>
+                </div>
+                <h3 class="text-lg font-semibold mb-1">White Marble Laxmi Statue</h3>
+                <div class="flex items-center mb-3">
+                  <div class="flex text-yellow-400">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                  </div>
+                  <span class="text-gray-500 text-sm ml-1">(42)</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span class="text-gray-400 line-through text-sm">₹5,999</span>
+                    <span class="text-gray-800 font-bold ml-2">₹4,799</span>
+                  </div>
+                  <button
+                    class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-all">
+                    <i class="ri-shopping-cart-2-line"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Product 3 -->
+            <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition-all">
+              <div class="relative h-64 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=Beautiful%20brass%20Krishna%20murti%20%28statue%29%20playing%20flute%2C%20with%20intricate%20details%2C%20ornate%20decorations%2C%20professional%20product%20photography%20on%20plain%20background%2C%20soft%20lighting%20highlighting%20the%20craftsmanship%2C%20Hindu%20deity&width=500&height=500&seq=prod3&orientation=squarish"
+                  alt="Brass Krishna Murti" class="w-full h-full object-cover object-top">
+                <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                  <button
+                    class="quick-view-btn bg-white text-gray-800 px-4 py-2 rounded-button font-medium hover:bg-gray-100 transition-all whitespace-nowrap">Quick
+                    View</button>
+                </div>
+                <div class="absolute top-3 left-3 bg-red-500 text-white text-xs px-2 py-1 rounded-full">Sale</div>
+              </div>
+              <div class="p-4">
+                <div class="flex items-center mb-2">
+                  <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full">Krishna</span>
+                  <span class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full ml-2">Brass</span>
+                </div>
+                <h3 class="text-lg font-semibold mb-1">Brass Krishna with Flute</h3>
+                <div class="flex items-center mb-3">
+                  <div class="flex text-yellow-400">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-line"></i>
+                  </div>
+                  <span class="text-gray-500 text-sm ml-1">(35)</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span class="text-gray-400 line-through text-sm">₹4,299</span>
+                    <span class="text-gray-800 font-bold ml-2">₹3,499</span>
+                  </div>
+                  <button
+                    class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-all">
+                    <i class="ri-shopping-cart-2-line"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Product 4 -->
+            <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition-all">
+              <div class="relative h-64 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=Beautiful%20brass%20pooja%20diya%20%28lamp%29%20set%20with%20intricate%20designs%2C%20traditional%20Hindu%20oil%20lamps%2C%20professional%20product%20photography%20on%20plain%20background%2C%20soft%20lighting%20highlighting%20the%20craftsmanship&width=500&height=500&seq=prod4&orientation=squarish"
+                  alt="Brass Diya Set" class="w-full h-full object-cover object-top">
+                <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                  <button
+                    class="quick-view-btn bg-white text-gray-800 px-4 py-2 rounded-button font-medium hover:bg-gray-100 transition-all whitespace-nowrap">Quick
+                    View</button>
+                </div>
+              </div>
+              <div class="p-4">
+                <div class="flex items-center mb-2">
+                  <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full">Pooja Items</span>
+                  <span class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full ml-2">Brass</span>
+                </div>
+                <h3 class="text-lg font-semibold mb-1">Decorative Brass Diya Set (5 pcs)</h3>
+                <div class="flex items-center mb-3">
+                  <div class="flex text-yellow-400">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-half-fill"></i>
+                  </div>
+                  <span class="text-gray-500 text-sm ml-1">(19)</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span class="text-gray-400 line-through text-sm">₹1,899</span>
+                    <span class="text-gray-800 font-bold ml-2">₹1,499</span>
+                  </div>
+                  <button
+                    class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-all">
+                    <i class="ri-shopping-cart-2-line"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Product 5 -->
+            <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition-all">
+              <div class="relative h-64 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=Beautiful%20wooden%20mandir%20%28Hindu%20temple%29%20for%20home%20with%20intricate%20carvings%2C%20traditional%20design%2C%20professional%20product%20photography%20on%20plain%20background%2C%20soft%20lighting%20highlighting%20the%20craftsmanship&width=500&height=500&seq=prod5&orientation=squarish"
+                  alt="Wooden Home Temple" class="w-full h-full object-cover object-top">
+                <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                  <button
+                    class="quick-view-btn bg-white text-gray-800 px-4 py-2 rounded-button font-medium hover:bg-gray-100 transition-all whitespace-nowrap">Quick
+                    View</button>
+                </div>
+                <div class="absolute top-3 left-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">Bestseller
+                </div>
+              </div>
+              <div class="p-4">
+                <div class="flex items-center mb-2">
+                  <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full">Decor</span>
+                  <span class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full ml-2">Wood</span>
+                </div>
+                <h3 class="text-lg font-semibold mb-1">Handcrafted Wooden Home Temple</h3>
+                <div class="flex items-center mb-3">
+                  <div class="flex text-yellow-400">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                  </div>
+                  <span class="text-gray-500 text-sm ml-1">(56)</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span class="text-gray-400 line-through text-sm">₹8,999</span>
+                    <span class="text-gray-800 font-bold ml-2">₹7,499</span>
+                  </div>
+                  <button
+                    class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-all">
+                    <i class="ri-shopping-cart-2-line"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Product 6 -->
+            <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition-all">
+              <div class="relative h-64 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=Beautiful%20brass%20bell%20%28ghanta%29%20with%20intricate%20designs%2C%20traditional%20Hindu%20temple%20bell%2C%20professional%20product%20photography%20on%20plain%20background%2C%20soft%20lighting%20highlighting%20the%20craftsmanship&width=500&height=500&seq=prod6&orientation=squarish"
+                  alt="Brass Temple Bell" class="w-full h-full object-cover object-top">
+                <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                  <button
+                    class="quick-view-btn bg-white text-gray-800 px-4 py-2 rounded-button font-medium hover:bg-gray-100 transition-all whitespace-nowrap">Quick
+                    View</button>
+                </div>
+              </div>
+              <div class="p-4">
+                <div class="flex items-center mb-2">
+                  <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full">Pooja Items</span>
+                  <span class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full ml-2">Brass</span>
+                </div>
+                <h3 class="text-lg font-semibold mb-1">Traditional Brass Temple Bell</h3>
+                <div class="flex items-center mb-3">
+                  <div class="flex text-yellow-400">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-line"></i>
+                  </div>
+                  <span class="text-gray-500 text-sm ml-1">(24)</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span class="text-gray-400 line-through text-sm">₹1,299</span>
+                    <span class="text-gray-800 font-bold ml-2">₹999</span>
+                  </div>
+                  <button
+                    class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-all">
+                    <i class="ri-shopping-cart-2-line"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Load More Button -->
+          <div class="flex justify-center mt-10">
+            <button
+              class="bg-white border border-gray-300 hover:bg-gray-50 text-gray-800 px-6 py-3 rounded-button font-medium transition-all whitespace-nowrap flex items-center">
+              Load More Products
+              <i class="ri-arrow-down-line ml-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- About Us Section -->
+  <section id="about" class="py-16 px-6 bg-white">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <img
+            src="https://readdy.ai/api/search-image?query=Beautiful%20traditional%20Indian%20artisan%20workshop%20with%20craftsmen%20creating%20Hindu%20deity%20statues%2C%20warm%20lighting%2C%20skilled%20artisans%20working%20on%20brass%20and%20marble%20sculptures%2C%20authentic%20cultural%20setting%2C%20professional%20photography&width=600&height=500&seq=about&orientation=landscape"
+            alt="Our Artisans" class="rounded-lg shadow-lg w-full h-auto">
+        </div>
+        <div>
+          <div class="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full mb-4">Our Story</div>
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 serif-font">Bringing Sacred Art to Your Home Since 2010</h2>
+          <p class="text-gray-600 mb-6">DivineMurtiStore was founded with a mission to preserve and promote the rich
+            tradition of Hindu sacred art while making it accessible to devotees worldwide. We work directly with
+            skilled artisans from across India who have inherited generations of craftsmanship in creating divine murtis
+            and pooja items.</p>
+          <p class="text-gray-600 mb-8">Every piece in our collection is handcrafted with devotion and blessed in
+            traditional ceremonies before being shipped to your home. We believe that these sacred items are not just
+            decorative pieces but channels of divine energy that enhance your spiritual practice.</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="flex items-start">
+              <div
+                class="w-12 h-12 flex items-center justify-center bg-primary/10 text-primary rounded-full mr-4 flex-shrink-0">
+                <i class="ri-hand-heart-line text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2">Authentic Craftsmanship</h3>
+                <p class="text-gray-600">Each item is handcrafted by skilled artisans using traditional techniques.</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div
+                class="w-12 h-12 flex items-center justify-center bg-primary/10 text-primary rounded-full mr-4 flex-shrink-0">
+                <i class="ri-truck-line text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2">Pan-India Delivery</h3>
+                <p class="text-gray-600">We deliver to all states in India with secure packaging for fragile items.</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div
+                class="w-12 h-12 flex items-center justify-center bg-primary/10 text-primary rounded-full mr-4 flex-shrink-0">
+                <i class="ri-recycle-line text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2">Eco-Friendly</h3>
+                <p class="text-gray-600">We use sustainable materials and eco-friendly packaging.</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div
+                class="w-12 h-12 flex items-center justify-center bg-primary/10 text-primary rounded-full mr-4 flex-shrink-0">
+                <i class="ri-customer-service-2-line text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2">Dedicated Support</h3>
+                <p class="text-gray-600">Our team is available to assist you with any queries or concerns.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="py-16 px-6 bg-gray-50">
+    <div class="container mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 serif-font">What Our Devotees Say</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">Hear from our customers about their experience with our divine
+          products and services.</p>
+      </div>
+      <div class="relative" id="testimonial-slider">
+        <div class="flex overflow-x-hidden" id="testimonial-container">
+          <!-- Testimonial 1 -->
+          <div class="testimonial-slide min-w-full md:min-w-[33.333%] px-4">
+            <div class="bg-white rounded-lg shadow-md p-6 h-full">
+              <div class="flex text-yellow-400 mb-4">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+              </div>
+              <p class="text-gray-600 mb-6">"The Ganesh murti I ordered is absolutely beautiful! The craftsmanship is
+                exquisite and you can feel the devotion that went into creating it. It has become the centerpiece of my
+                home temple and brings a wonderful energy to our daily prayers."</p>
+              <div class="flex items-center">
+                <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20an%20Indian%20woman%20in%20her%2040s%20with%20a%20warm%20smile%2C%20neutral%20background%2C%20business%20casual%20attire&width=100&height=100&seq=test1&orientation=squarish"
+                    alt="Priya Sharma" class="w-full h-full object-cover">
+                </div>
+                <div>
+                  <h4 class="font-semibold">Priya Sharma</h4>
+                  <p class="text-gray-500 text-sm">Mumbai, Maharashtra</p>
+                </div>
+                <div class="ml-auto">
+                  <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full flex items-center">
+                    <i class="ri-checkbox-circle-fill mr-1"></i>
+                    Verified Buyer
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Testimonial 2 -->
+          <div class="testimonial-slide min-w-full md:min-w-[33.333%] px-4">
+            <div class="bg-white rounded-lg shadow-md p-6 h-full">
+              <div class="flex text-yellow-400 mb-4">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+              </div>
+              <p class="text-gray-600 mb-6">"I've purchased several items from DivineMurtiStore and each one has
+                exceeded my expectations. The brass pooja set is particularly stunning. The delivery was prompt and
+                everything was packed with great care. I appreciate the personal touch in their service."</p>
+              <div class="flex items-center">
+                <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20an%20Indian%20man%20in%20his%2050s%20with%20glasses%20and%20a%20warm%20smile%2C%20neutral%20background%2C%20business%20casual%20attire&width=100&height=100&seq=test2&orientation=squarish"
+                    alt="Rajesh Patel" class="w-full h-full object-cover">
+                </div>
+                <div>
+                  <h4 class="font-semibold">Rajesh Patel</h4>
+                  <p class="text-gray-500 text-sm">Ahmedabad, Gujarat</p>
+                </div>
+                <div class="ml-auto">
+                  <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full flex items-center">
+                    <i class="ri-checkbox-circle-fill mr-1"></i>
+                    Verified Buyer
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Testimonial 3 -->
+          <div class="testimonial-slide min-w-full md:min-w-[33.333%] px-4">
+            <div class="bg-white rounded-lg shadow-md p-6 h-full">
+              <div class="flex text-yellow-400 mb-4">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-half-fill"></i>
+              </div>
+              <p class="text-gray-600 mb-6">"The wooden home temple I purchased is a masterpiece! The intricate carvings
+                and attention to detail are remarkable. It took a bit longer than expected to arrive, but it was
+                absolutely worth the wait. My entire family is delighted with this beautiful addition to our home."</p>
+              <div class="flex items-center">
+                <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20a%20South%20Indian%20woman%20in%20her%2030s%20with%20a%20warm%20smile%2C%20neutral%20background%2C%20casual%20elegant%20attire&width=100&height=100&seq=test3&orientation=squarish"
+                    alt="Lakshmi Venkatesh" class="w-full h-full object-cover">
+                </div>
+                <div>
+                  <h4 class="font-semibold">Lakshmi Venkatesh</h4>
+                  <p class="text-gray-500 text-sm">Bangalore, Karnataka</p>
+                </div>
+                <div class="ml-auto">
+                  <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full flex items-center">
+                    <i class="ri-checkbox-circle-fill mr-1"></i>
+                    Verified Buyer
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Navigation Dots -->
+        <div class="flex justify-center mt-8">
+          <button class="w-3 h-3 rounded-full bg-primary mx-1 testimonial-dot active" data-index="0"></button>
+          <button class="w-3 h-3 rounded-full bg-gray-300 mx-1 testimonial-dot" data-index="1"></button>
+          <button class="w-3 h-3 rounded-full bg-gray-300 mx-1 testimonial-dot" data-index="2"></button>
+        </div>
+        <!-- Navigation Arrows -->
+        <button
+          class="absolute top-1/2 left-0 transform -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md text-gray-800 hover:bg-gray-100 focus:outline-none z-10 hidden md:flex"
+          id="prev-testimonial">
+          <i class="ri-arrow-left-s-line text-xl"></i>
+        </button>
+        <button
+          class="absolute top-1/2 right-0 transform -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md text-gray-800 hover:bg-gray-100 focus:outline-none z-10 hidden md:flex"
+          id="next-testimonial">
+          <i class="ri-arrow-right-s-line text-xl"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 px-6 bg-white">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <div class="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full mb-4">Get in Touch</div>
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 serif-font">Have Questions? We're Here to Help</h2>
+          <p class="text-gray-600 mb-8">Whether you have questions about our products, need assistance with your order,
+            or want to learn more about our services, our team is ready to assist you.</p>
+          <div class="space-y-6">
+            <div class="flex items-start">
+              <div
+                class="w-12 h-12 flex items-center justify-center bg-primary/10 text-primary rounded-full mr-4 flex-shrink-0">
+                <i class="ri-map-pin-line text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-1">Our Location</h3>
+                <p class="text-gray-600">j.k Park 3 Near Kothariya<br>Rajkot,360020, India</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div
+                class="w-12 h-12 flex items-center justify-center bg-primary/10 text-primary rounded-full mr-4 flex-shrink-0">
+                <i class="ri-phone-line text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-1">Phone Number</h3>
+                <p class="text-gray-600">+91 94080 28193</p>
+                <p class="text-gray-600">Mon-Sat: 10:00 AM - 7:00 PM</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div
+                class="w-12 h-12 flex items-center justify-center bg-primary/10 text-primary rounded-full mr-4 flex-shrink-0">
+                <i class="ri-mail-line text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-1">Email Address</h3>
+                <p class="text-gray-600">arayansavaliya07@gmail.com</p>
+                <p class="text-gray-600">support@divinemurtistore.com</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-8">
+            <h3 class="text-lg font-semibold mb-4">Connect With Us</h3>
+            <div class="flex space-x-4">
+              <a href="#"
+                class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-all">
+                <i class="ri-facebook-fill"></i>
+              </a>
+              <a href="https://instagram.com/developergtm" target="_blank"
+                class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-all">
+                <i class="ri-instagram-line"></i>
+              </a>
+              <a href="https://linkedin.com/in/developergtm" target="_blank"
+                class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-all">
+                <i class="ri-linkedin-fill"></i>
+              </a>
+              <a href="https://github.com/developergtm" target="_blank"
+                class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-all">
+                <i class="ri-github-fill"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="bg-white rounded-lg shadow-md p-8">
+            <h3 class="text-2xl font-semibold mb-6 serif-font">Send Us a Message</h3>
+            <form id="contact-form">
+              <div class="mb-6">
+                <label for="name" class="block text-gray-700 mb-2">Your Name</label>
+                <input type="text" id="name"
+                  class="w-full px-4 py-3 rounded-button border-none bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/30 text-sm"
+                  placeholder="Enter your full name" required>
+              </div>
+              <div class="mb-6">
+                <label for="email" class="block text-gray-700 mb-2">Email Address</label>
+                <input type="email" id="email"
+                  class="w-full px-4 py-3 rounded-button border-none bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/30 text-sm"
+                  placeholder="Enter your email address" required>
+              </div>
+              <div class="mb-6">
+                <label for="phone" class="block text-gray-700 mb-2">Phone Number</label>
+                <input type="tel" id="phone"
+                  class="w-full px-4 py-3 rounded-button border-none bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/30 text-sm"
+                  placeholder="Enter your phone number">
+              </div>
+              <div class="mb-6">
+                <label for="subject" class="block text-gray-700 mb-2">Subject</label>
+                <select id="subject"
+                  class="w-full px-4 py-3 rounded-button border-none bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/30 text-sm pr-8 appearance-none"
+                  required>
+                  <option value="" disabled selected>Select a subject</option>
+                  <option value="product-inquiry">Product Inquiry</option>
+                  <option value="order-status">Order Status</option>
+                  <option value="return-exchange">Return or Exchange</option>
+                  <option value="feedback">Feedback</option>
+                  <option value="other">Other</option>
+                </select>
+                <div class="absolute right-12 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-500">
+                  <i class="ri-arrow-down-s-line"></i>
+                </div>
+              </div>
+              <div class="mb-6">
+                <label for="message" class="block text-gray-700 mb-2">Your Message</label>
+                <textarea id="message" rows="5"
+                  class="w-full px-4 py-3 rounded-button border-none bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/30 text-sm"
+                  placeholder="Type your message here..." required></textarea>
+              </div>
+              <div class="flex items-center mb-6">
+                <input type="checkbox" id="subscribe" class="custom-checkbox mr-3">
+                <label for="subscribe" class="text-gray-600 text-sm">Subscribe to our newsletter for updates on new
+                  arrivals and special offers.</label>
+              </div>
+              <div class="flex flex-wrap gap-4">
+                <button type="submit"
+                  class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-button font-medium transition-all whitespace-nowrap">Send
+                  Message</button>
+                <a href="https://wa.me/919408028193" target="_blank"
+                  class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-button font-medium transition-all flex items-center whitespace-nowrap">
+                  <i class="ri-whatsapp-line mr-2"></i>
+                  Chat on WhatsApp
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white pt-16 pb-8 px-6">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div>
+          <a href="#" class="text-3xl font-['Pacifico'] text-primary mb-6 inline-block">DivineMurtiStore</a>
+          <p class="text-gray-400 mb-6">Bringing divine presence into your home with authentic handcrafted murtis and
+            pooja essentials since 2010.</p>
+          <div class="flex space-x-4">
+            <a href="#"
+              class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-gray-700 transition-all">
+              <i class="ri-facebook-fill"></i>
+            </a>
+            <a href="https://instagram.com/developergtm" target="_blank"
+              class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-gray-700 transition-all">
+              <i class="ri-instagram-line"></i>
+            </a>
+            <a href="https://linkedin.com/in/developergtm" target="_blank"
+              class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-gray-700 transition-all">
+              <i class="ri-linkedin-fill"></i>
+            </a>
+            <a href="https://github.com/developergtm" target="_blank"
+              class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-gray-700 transition-all">
+              <i class="ri-github-fill"></i>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Home</a></li>
+            <li><a href="#categories" class="text-gray-400 hover:text-primary transition-colors">Categories</a></li>
+            <li><a href="#about" class="text-gray-400 hover:text-primary transition-colors">About Us</a></li>
+            <li><a href="#testimonials" class="text-gray-400 hover:text-primary transition-colors">Reviews</a></li>
+            <li><a href="#contact" class="text-gray-400 hover:text-primary transition-colors">Contact</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-6">Customer Service</h3>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">My Account</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Track Order</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Shipping Policy</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Return Policy</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">FAQs</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Terms & Conditions</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-6">Newsletter</h3>
+          <p class="text-gray-400 mb-4">Subscribe to receive updates on new arrivals and special offers.</p>
+          <form class="mb-6">
+            <div class="flex">
+              <input type="email" placeholder="Your email address"
+                class="flex-grow px-4 py-3 rounded-l-button border-none bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary/30 text-sm text-white">
+              <button type="submit"
+                class="bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-r-button font-medium transition-all whitespace-nowrap">Subscribe</button>
+            </div>
+          </form>
+          <h3 class="text-lg font-semibold mb-4">We Accept</h3>
+          <div class="flex space-x-3">
+            <div class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded text-white">
+              <i class="ri-visa-fill text-xl"></i>
+            </div>
+            <div class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded text-white">
+              <i class="ri-mastercard-fill text-xl"></i>
+            </div>
+            <div class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded text-white">
+              <i class="ri-paypal-fill text-xl"></i>
+            </div>
+            <div class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded text-white">
+              <i class="ri-amazon-pay-fill text-xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-12 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 DivineMurtiStore. All rights reserved.</p>
+          <div class="flex space-x-6">
+            <a href="#" class="text-gray-400 hover:text-primary text-sm">Privacy Policy</a>
+            <a href="#" class="text-gray-400 hover:text-primary text-sm">Terms of Service</a>
+            <a href="#" class="text-gray-400 hover:text-primary text-sm">Sitemap</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Quick View Modal -->
+  <div id="quick-view-modal" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    <div class="absolute inset-0 flex items-center justify-center p-4">
+      <div class="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto relative">
+        <button id="close-modal"
+          class="absolute right-4 top-4 w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700">
+          <i class="ri-close-line text-2xl"></i>
+        </button>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
+          <div class="relative">
+            <img id="modal-product-image" src="" alt="" class="w-full h-auto rounded-lg">
+          </div>
+          <div>
+            <h2 id="modal-product-name" class="text-2xl font-semibold mb-2"></h2>
+            <div class="flex items-center mb-4">
+              <div class="flex text-yellow-400">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-half-fill"></i>
+              </div>
+              <span class="text-gray-500 text-sm ml-2">(28 reviews)</span>
+            </div>
+            <div class="mb-4">
+              <span id="modal-product-original-price" class="text-gray-400 line-through text-lg"></span>
+              <span id="modal-product-price" class="text-2xl font-bold text-gray-800 ml-2"></span>
+            </div>
+            <p id="modal-product-description" class="text-gray-600 mb-6"></p>
+            <div class="mb-6">
+              <h3 class="font-medium mb-2">Material</h3>
+              <div id="modal-product-material" class="flex gap-2"></div>
+            </div>
+            <div class="mb-6">
+              <h3 class="font-medium mb-2">Size</h3>
+              <div class="flex gap-2">
+                <button
+                  class="size-btn px-4 py-2 border border-gray-300 rounded-button hover:border-primary hover:text-primary">Small</button>
+                <button
+                  class="size-btn px-4 py-2 border border-gray-300 rounded-button hover:border-primary hover:text-primary">Medium</button>
+                <button
+                  class="size-btn px-4 py-2 border border-gray-300 rounded-button hover:border-primary hover:text-primary">Large</button>
+              </div>
+            </div>
+            <div class="mb-6">
+              <h3 class="font-medium mb-2">Quantity</h3>
+              <div class="flex items-center">
+                <button id="decrease-quantity"
+                  class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-l-button hover:bg-gray-50">
+                  <i class="ri-subtract-line"></i>
+                </button>
+                <input type="number" id="quantity" value="1" min="1"
+                  class="w-16 h-10 border-y border-gray-300 text-center focus:outline-none" readonly>
+                <button id="increase-quantity"
+                  class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-r-button hover:bg-gray-50">
+                  <i class="ri-add-line"></i>
+                </button>
+              </div>
+            </div>
+            <button
+              class="w-full bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-button font-medium transition-all flex items-center justify-center">
+              <i class="ri-shopping-cart-2-line mr-2"></i>
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Scripts -->
+  <script id="header-scroll">
+    document.addEventListener('DOMContentLoaded', function () {
+      const header = document.querySelector('.header-nav');
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+    });
+  </script>
+  <script id="mobile-menu">
+    document.addEventListener('DOMContentLoaded', function () {
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenuButton.addEventListener('click', function () {
+        mobileMenu.classList.toggle('hidden');
+      });
+      // Close mobile menu when clicking on a link
+      const mobileLinks = mobileMenu.querySelectorAll('a');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', function () {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+    });
+  </script>
+  <script id="price-range">
+    document.addEventListener('DOMContentLoaded', function () {
+      const priceRange = document.getElementById('price-range');
+      const priceValue = document.getElementById('price-value');
+      if (priceRange && priceValue) {
+        priceRange.addEventListener('input', function () {
+          const value = this.value;
+          priceValue.textContent = '₹' + parseInt(value).toLocaleString();
+        });
+      }
+    });
+  </script>
+  <script id="testimonial-slider">
+    document.addEventListener('DOMContentLoaded', function () {
+      const container = document.getElementById('testimonial-container');
+      const slides = document.querySelectorAll('.testimonial-slide');
+      const dots = document.querySelectorAll('.testimonial-dot');
+      const prevBtn = document.getElementById('prev-testimonial');
+      const nextBtn = document.getElementById('next-testimonial');
+      let currentIndex = 0;
+      const slideWidth = 100; // percentage
+      function updateSlider() {
+        // For mobile: show one slide at a time
+        if (window.innerWidth < 768) {
+          container.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
+        }
+        // For desktop: show three slides at a time
+        else {
+          container.style.transform = `translateX(-${currentIndex * (slideWidth / 3)}%)`;
+        }
+        // Update dots
+        dots.forEach((dot, index) => {
+          if (index === currentIndex) {
+            dot.classList.add('bg-primary');
+            dot.classList.remove('bg-gray-300');
+          } else {
+            dot.classList.remove('bg-primary');
+            dot.classList.add('bg-gray-300');
+          }
+        });
+      }
+      // Initialize dots click events
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          currentIndex = index;
+          updateSlider();
+        });
+      });
+      // Initialize arrow buttons
+      if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+          currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+          updateSlider();
+        });
+        nextBtn.addEventListener('click', () => {
+          currentIndex = (currentIndex + 1) % slides.length;
+          updateSlider();
+        });
+      }
+      // Auto-rotate testimonials
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlider();
+      }, 5000);
+      // Update slider on window resize
+      window.addEventListener('resize', updateSlider);
+      // Initialize slider
+      updateSlider();
+    });
+  </script>
+  <script id="quick-view">
+    document.addEventListener('DOMContentLoaded', function () {
+      const modal = document.getElementById('quick-view-modal');
+      const closeBtn = document.getElementById('close-modal');
+      const quickViewBtns = document.querySelectorAll('.quick-view-btn');
+      const quantityInput = document.getElementById('quantity');
+      const decreaseBtn = document.getElementById('decrease-quantity');
+      const increaseBtn = document.getElementById('increase-quantity');
+      const sizeBtns = document.querySelectorAll('.size-btn');
+      function openModal(productCard) {
+        const img = productCard.querySelector('img');
+        const name = productCard.querySelector('h3').textContent;
+        const originalPrice = productCard.querySelector('.text-gray-400').textContent;
+        const price = productCard.querySelector('.text-gray-800').textContent;
+        const material = productCard.querySelector('.bg-gray-100').textContent;
+        document.getElementById('modal-product-image').src = img.src;
+        document.getElementById('modal-product-name').textContent = name;
+        document.getElementById('modal-product-original-price').textContent = originalPrice;
+        document.getElementById('modal-product-price').textContent = price;
+        document.getElementById('modal-product-description').textContent =
+          "This exquisite piece is handcrafted by skilled artisans using traditional techniques. Each detail is carefully crafted to bring divine beauty and spiritual energy to your sacred space. The item comes with a certificate of authenticity and is blessed according to traditional rituals.";
+
+        document.getElementById('modal-product-material').innerHTML = `
+      <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">${material}</span>
+    `;
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModal() {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+        quantityInput.value = 1;
+        sizeBtns.forEach(btn => btn.classList.remove('border-primary', 'text-primary'));
+      }
+      quickViewBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const productCard = btn.closest('.product-card');
+          openModal(productCard);
+        });
+      });
+      closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+      decreaseBtn.addEventListener('click', () => {
+        const value = parseInt(quantityInput.value);
+        if (value > 1) quantityInput.value = value - 1;
+      });
+      increaseBtn.addEventListener('click', () => {
+        const value = parseInt(quantityInput.value);
+        quantityInput.value = value + 1;
+      });
+      sizeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          sizeBtns.forEach(b => b.classList.remove('border-primary', 'text-primary'));
+          btn.classList.add('border-primary', 'text-primary');
+        });
+      });
+    });
+  </script>
+  <script id="contact-form">
+    document.addEventListener('DOMContentLoaded', function () {
+      const contactForm = document.getElementById('contact-form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          // Simulate form submission
+          const submitButton = contactForm.querySelector('button[type="submit"]');
+          const originalText = submitButton.innerHTML;
+          submitButton.disabled = true;
+          submitButton.innerHTML = '<i class="ri-loader-4-line animate-spin mr-2"></i> Sending...';
+          // Simulate API call
+          setTimeout(() => {
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalText;
+          }, 1500);
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
